@@ -17,8 +17,8 @@ def submit():
 
 
 @app.route("/query")
-def process_query():
-    word = request.query_string
+def process_query(word):
+    # word = request.query_string
     if word == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
 
