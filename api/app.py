@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+
 app = Flask(__name__)
 
 
@@ -11,14 +12,15 @@ def hello_world():
 def submit():
     input_name = request.form.get("name")
     input_age = request.form.get("age")
-    link = "https://picsum.photos/"+input_name+"/"+input_age
+    link = "https://picsum.photos/" + input_name + "/" + input_age
     return render_template("hello.html", link=link)
+
 
 @app.route("/query")
 def process_query():
     word = request.query_string
     if word == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
-    
+
     if word == "asteroids":
         return "Unknown"
