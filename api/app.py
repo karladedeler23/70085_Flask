@@ -16,7 +16,10 @@ def submit():
     return render_template("hello.html", link=link)
 
 
-@app.route("/query", methods=["GET"])
+@app.route("/query")
+def handle_query():
+    return process_query(request.args.get('q'))
+
 def process_query(word):
     if word == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
