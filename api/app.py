@@ -13,3 +13,12 @@ def submit():
     input_age = request.form.get("age")
     link = "https://picsum.photos/"+input_name+"/"+input_age
     return render_template("hello.html", link=link)
+
+@app.route("/query")
+def process_query():
+    word = request.query_string
+    if word == "dinosaurs":
+        return "Dinosaurs ruled the Earth 200 million years ago"
+    
+    if word == "asteroids":
+        return "Unknown"
