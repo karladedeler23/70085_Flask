@@ -18,7 +18,8 @@ def submit():
 
 @app.route("/query")
 def handle_query():
-    return process_query(request.args.get('q'))
+    return process_query(request.args.get("q"))
+
 
 def process_query(word):
     if word == "dinosaurs":
