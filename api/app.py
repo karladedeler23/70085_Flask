@@ -16,9 +16,8 @@ def submit():
     return render_template("hello.html", link=link)
 
 
-@app.route("/query")
+@app.route("/query", methods=["GET"])
 def process_query(word):
-    # word = request.query_string
     if word == "dinosaurs":
         return "Dinosaurs ruled the Earth 200 million years ago"
 
