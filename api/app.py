@@ -22,8 +22,11 @@ def handle_query():
 
 
 def process_query(word):
-    if word == "dinosaurs":
+    if "dinosaurs" in word:
         return "Dinosaurs ruled the Earth 200 million years ago"
 
-    if word == "asteroids":
+    if "asteroids" in word:
         return "Unknown"
+
+    if word == "What is your name?":
+        return "Howell_Karla_Joey"
