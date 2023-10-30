@@ -32,12 +32,17 @@ def process_query(word):
     if word == "What is your name?":
         return "Howell_Karla_Joey"
 
-    if word.startswith("What is") and "plus" in word:
+    if "plus" in word:
         matches = re.findall(r'\d+', word)
         integers = [int(match) for match in matches]
-        return sum(integers)
+        return str(sum(integers))
 
-    if word.startswith("Which of the following numbers is the largest:"):
+    if "largest" in word:
         matches = re.findall(r'\d+', word)
         integers = [int(match) for match in matches]
-        return max(integers)
+        return str(max(integers))
+
+    if "multiplied" in word:
+        matches = re.findall(r'\d+', word)
+        integers = [int(match) for match in matches]
+        return str(integers[0] * integers[1])
