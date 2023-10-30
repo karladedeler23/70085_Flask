@@ -58,8 +58,6 @@ def process_query(word):
     if "square" in word and "cube" in word:
         matches = re.findall(r'\d+', word)
         integers = [int(match) for match in matches]
-        valid = []
         for x in integers:
             if test_six(x):
-                valid.append(x)
-        return str(valid)
+                return str(x)
