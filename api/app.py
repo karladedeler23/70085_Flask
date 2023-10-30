@@ -61,5 +61,6 @@ def process_query(word):
         for x in integers:
             if test_six(x):
                 return str(x)
+        return ""
     else:
         return str(100)
