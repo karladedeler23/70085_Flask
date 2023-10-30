@@ -46,3 +46,24 @@ def process_query(word):
         matches = re.findall(r'\d+', word)
         integers = [int(match) for match in matches]
         return str(integers[0] * integers[1])
+
+    def test_square(x):
+        if type(x**0.5) == int:
+            return True
+        else:
+            return False
+
+    def test_cube(x):
+        if type(x**(1/3)) == int:
+            return True
+        else:
+            return False
+
+    if "square" in word and "cube" in word:
+        matches = re.findall(r'\d+', word)
+        integers = [int(match) for match in matches]
+        valid = []
+        for x in integers:
+            if test_square(x) and test_cube(x):
+                valid.append(x)
+        return str(valid)
