@@ -28,7 +28,7 @@ def process_query(word):
 
     if "asteroids" in word:
         return "Unknown"
- 
+
     if word == "What is your name?":
         return "Howell_Karla_Joey"
 
