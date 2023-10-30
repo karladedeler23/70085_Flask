@@ -47,14 +47,10 @@ def process_query(word):
         integers = [int(match) for match in matches]
         return str(integers[0] * integers[1])
 
-    def test_square(x):
-        if type(x**0.5) == int:
-            return True
-        else:
-            return False
-
-    def test_cube(x):
-        if type(x**(1/3)) == int:
+    def test_six(x):
+        y = x**(1/6)
+        y = int(y)
+        if y**6 == x:
             return True
         else:
             return False
@@ -64,6 +60,6 @@ def process_query(word):
         integers = [int(match) for match in matches]
         valid = []
         for x in integers:
-            if test_square(x) and test_cube(x):
+            if test_six(x):
                 valid.append(x)
         return str(valid)
