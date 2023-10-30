@@ -16,11 +16,12 @@ jobs:
       - name: Run flake8
         run: flake8 api/
           
-  test:
-      name: Run Python Tests
-      runs-on: ubuntu-latest
+  pytest:
+    needs: python-formatting
+    name: Run Python Tests
+    runs-on: ubuntu-latest
 
-      steps:
+    steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
@@ -38,7 +39,7 @@ jobs:
         working-directory: api/
           
   deploy-to-vercel:
-    needs: python-formatting
+    needs: pytest
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
