@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import re
 
 app = Flask(__name__)
 
@@ -27,6 +28,16 @@ def process_query(word):
 
     if "asteroids" in word:
         return "Unknown"
-
+ 
     if word == "What is your name?":
         return "Howell_Karla_Joey"
+
+    if word.startswith("What is") and "plus" in word:
+        matches = re.findall(r'\d+', word)
+        integers = [int(match) for match in matches]
+        return sum(integers)
+
+    if word.startswith("Which of the following numbers is the largest:"):
+        matches = re.findall(r'\d+', word)
+        integers = [int(match) for match in matches]
+        return max(integers)
