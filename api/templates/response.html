@@ -27,7 +27,7 @@
             {% if repos %}
                 {% for repo in repos %}
                 <tr>
-                    <td>{{ repo['full_name'].split('/')[1] }}</td>
+                    <td><a href="{{ repo['html_url'] }}">{{ repo['full_name'].split('/')[1] }}</a></td>
                     <td>{{ repo['clone_url'] }}</td>
                     <td>{{ repo['updated_at'] }}</td>
                     <td>{{ repo['newest_commit'] }}</td>
