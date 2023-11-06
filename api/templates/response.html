@@ -20,7 +20,9 @@
             <th>Repository name</th>
             <th>Repository link</th>
             <th>Date last modified</th>
-            <th>Author</th>
+            <th>Last commit hash</th>
+            <th>Last commit message</th>
+            <th>Number commits</th>
         </tr>
             {% if repos %}
                 {% for repo in repos %}
@@ -28,6 +30,9 @@
                     <td>{{ repo['full_name'].split('/')[1] }}</td>
                     <td>{{ repo['clone_url'] }}</td>
                     <td>{{ repo['updated_at'] }}</td>
+                    <td>{{ repo['newest_commit'] }}</td>
+                    <td>{{ repo['newest_commit_message'] }}</td>
+                    <td>{{ repo['num_commits'] }}</td>
                 </tr>
                 {% endfor %}
             {% endif %}

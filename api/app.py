@@ -18,42 +18,33 @@ def submit():
     return render_template("hello.html", link=link)
 
 
-@app.route("/github", methods=['GET','POST'])
+@app.route("/github", methods=["GET", "POST"])
 def github():
     repos = None
     username = request.form.get("username")
     if username:
-        response = requests.get("https://api.github.com/users/" + username + "/repos")
+        response = requests.get("https://api.github.com/users/"
+                                + username + "/repos")
         print(response.status_code)
         if response.status_code == 200:
             repos = response.json()
-            
-            # commit_hashes = []
-            # for repo in repos:
-            #     url_raw = requests.get(repo["commits_url"][:-6])
-            #     url = url_raw.json()
-            #     if url:
-            #         print(url[0]["sha"])
-            #         #print(dir(url))
-            #         commit_hashes.append(url[0]["sha"])
-
-            # print(commit_hashes)
-    else:   
+            for repo in repos:
+                url_raw = requests.get(repo["commits_url"][:-6])
+                url = url_raw.json()
+                if url:
+                    repo["newest_commit"] = url[0]["sha"]
+                    repo["newest_commit_message"] = url[0]["commit"]["message"]
+                    repo["num_commits"] = len(url)
+    else:
         response = "Not found"
         repos = None
     return render_template("response.html", username=username, repos=repos)
 
-"""
-response = requests.get(“https://api.github.com/users/{GITHUB_USERNAME}/repos”)
-if response.status_code == 200:
-repos = response.json() # data returned is a list of ‘repository’ entities
-for repo in repos:
-print(repo[“full_name”])
-"""
 
 @app.route("/query")
 def handle_query():
     return process_query(request.args.get("q"))
+
 
 def process_query(word):
     if "dinosaurs" in word:
@@ -66,22 +57,22 @@ def process_query(word):
         return "Howell_Karla_Joey"
 
     if "plus" in word:
-        matches = re.findall(r'\d+', word)
+        matches = re.findall(r"\d+", word)
         integers = [int(match) for match in matches]
         return str(sum(integers))
 
     if "largest" in word:
-        matches = re.findall(r'\d+', word)
+        matches = re.findall(r"\d+", word)
         integers = [int(match) for match in matches]
         return str(max(integers))
 
     if "multiplied" in word:
-        matches = re.findall(r'\d+', word)
+        matches = re.findall(r"\d+", word)
         integers = [int(match) for match in matches]
         return str(integers[0] * integers[1])
 
     def test_six(x):
-        y = x**(1/6)
+        y = x ** (1 / 6)
         y = int(y)
         if y**6 == x:
             return True
@@ -89,7 +80,7 @@ def process_query(word):
             return False
 
     if "square" in word and "cube" in word:
-        matches = re.findall(r'\d+', word)
+        matches = re.findall(r"\d+", word)
         integers = [int(match) for match in matches]
         for x in integers:
             if test_six(x):
@@ -97,4 +88,3 @@ def process_query(word):
         return ""
     else:
         return str(100)
-    

@@ -1,0 +1,27 @@
+• How/why did you win/lose?
+We didn't know the game started, so we began with -5k points before we started coding. We started at 2:55 because we were waiting for an announcement. Starting so far down was a large contributor to us 
+
+• What was your strategy for deciding which sorts of requests to tackle first?
+We first confirmed how we can query numbers, then it was easy to tackle the problems overall.    
+
+• How did you decide when to release?
+    We decided to release as soon as we had a working solution for at least one of the questions
+    
+• How many times did you release?
+    We released around 8 times
+
+• What was your average time between releases?
+    2min
+
+• How do you feel about the quality of the code that you wrote?
+    It felt okay because of the simplicity of the queries.
+
+• Did writing tests help?
+    Honestly no, they took away time. It was faster to test locally then deploy rather than write those unit tests.
+    Plus those unit tests took time to deploy, and slowed how fast we were able to respond to new questions.
+
+• Did you delete any code?
+    We commented code and eventually made changes / deleted what was useless or less efficient.
+
+• How did you co-operate within your team?
+    We used visual studio code live sharing option thus only one of us had to push. It felt 
