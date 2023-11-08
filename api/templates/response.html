@@ -16,33 +16,33 @@
         <h2><a style="color: white; text-decoration:none" href="/">SSE Lab coursework</a></h2>
     </header>
     <div style="height: 30px;"></div>
-
+    <h3 style="display: flex; text-align: center; flex-direction: column;">GitHub API</h3>
     {% if username %}
     <div style="display: flex; text-align: center; flex-direction: column;">
         <p>Hello {{ username }}</p>
         <br>
-    <table style="font-size: small;" class="table">
-        <tr>
-            <th scope="col">Repository name</th>
-            <th scope="col">Repository link</th>
-            <th scope="col">Date last modified</th>
-            <th scope="col">Last commit hash</th>
-            <th scope="col">Last commit message</th>
-            <th scope="col">Number commits</th>
-        </tr>
-        {% if repos %}
-        {% for repo in repos %}
-        <tr>
-            <td scope="row"><a href="{{ repo['html_url'] }}">{{ repo['full_name'].split('/')[1] }}</a></td>
-            <td scope="row">{{ repo['clone_url'] }}</td>
-            <td scope="row">{{ repo['updated_at'] }}</td>
-            <td scope="row">{{ repo['newest_commit'] }}</td>
-            <td scope="row">{{ repo['newest_commit_message'] }}</td>
-            <td scope="row">{{ repo['num_commits'] }}</td>
-        </tr>
-        {% endfor %}
-        {% endif %}
-    </table>
+        <table style="font-size: small;" class="table">
+            <tr>
+                <th scope="col">Repository name</th>
+                <th scope="col">Repository link</th>
+                <th scope="col">Date last modified</th>
+                <th scope="col">Last commit hash</th>
+                <th scope="col">Last commit message</th>
+                <th scope="col">Number commits</th>
+            </tr>
+            {% if repos %}
+            {% for repo in repos %}
+            <tr>
+                <td scope="row"><a href="{{ repo['html_url'] }}">{{ repo['full_name'].split('/')[1] }}</a></td>
+                <td scope="row">{{ repo['clone_url'] }}</td>
+                <td scope="row">{{ repo['updated_at'] }}</td>
+                <td scope="row">{{ repo['newest_commit'] }}</td>
+                <td scope="row">{{ repo['newest_commit_message'] }}</td>
+                <td scope="row">{{ repo['num_commits'] }}</td>
+            </tr>
+            {% endfor %}
+            {% endif %}
+        </table>
     </div>
     <br><br>
     <div style="display: flex; justify-content: center; text-align: center;">
@@ -54,14 +54,45 @@
         <input type="text" id="username" name="username">
         <input class="btn btn-primary d-inline-flex align-items-center" type="submit" value="Submit">
     </form>
-
-    <br><br>
-    <div style="display: flex; justify-content: center; text-align: center;">
-        <a class="btn btn-primary" href="/">go back</a>
-    </div>
     {% endif %}
 
     <div style="height: 50px;"></div>
+
+    <h3 style="display: flex; text-align: center; flex-direction: column;">Bored API</h3>
+    <div style="display: flex; text-align: center; flex-direction: column; margin: 0% 10%;">
+        <div class="btn-group">
+            <a class="btn btn-primary" href="/apis?q=education">educational</a>
+            <a class="btn btn-secondary" href="/apis?q=recreational">recreational</a>
+            <a class="btn btn-success" href="/apis?q=social">social</a>
+            <a class="btn btn-danger" href="/apis?q=diy">DIY</a>
+            <a class="btn btn-warning" href="/apis?q=charity">charity</a>
+            <a class="btn btn-info" href="/apis?q=cooking">cooking</a>
+            <a class="btn btn-light" href="/apis?q=relaxation">relaxation</a>
+            <a class="btn btn-dark" href="/apis?q=music">music</a>
+            <a class="btn btn-primary-light" style="color: white; background-color: blueviolet;"
+                href="/apis?q=busywork">busywork</a>
+        </div>
+    </div>
+
+
+    {% if query %}
+    <div style="margin: 0% 20%;">
+        <div style="margin-top: 30px;"></div>
+        <h4 style="display: flex; text-align: center; flex-direction: column;"> {{ query['type'].capitalize() }}</h4>
+        <p style="display: flex; text-align: left; flex-direction: column;"> Activity: {{ query['activity'] }}</p>
+        <p style="display: flex; text-align: left; flex-direction: column;"> No. of people: {{ query['participants'] }}</p>
+        <p>Accessibility:</p>
+        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="100" aria-valuemin="0"
+            aria-valuemax="100">
+            <div class="progress-bar" style="width: {{ query['accessibility'] * 100 }}%"></div>
+        </div>
+    </div>
+    {% endif %}
+
+    <br><br>
+    <div style="display: flex; justify-content: center; text-align: center; margin-bottom: 30px;">
+        <a class="btn btn-primary" href="/">go back</a>
+    </div>
 
     <footer style="display: flex; width: 100%; justify-content: center;" class="position-absolute bottom-0 end-0">
         <div>&copy; 2023 HKJ</div>

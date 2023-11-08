@@ -21,7 +21,15 @@ def submit():
 @app.route("/apis", methods=["GET", "POST"])
 def apis():
     repos = [{}]
+    query_res = None
     username = request.form.get("username")
+    query = request.args.get("q")
+
+    if query:
+        response = requests.get("http://www.boredapi.com/api/activity?type="
+                                + query)
+        query_res = response.json()
+
     if username:
         response = requests.get("https://api.github.com/users/"
                                 + username + "/repos")
@@ -44,7 +52,8 @@ def apis():
     else:
         response = "Not found"
         repos = None
-    return render_template("response.html", username=username, repos=repos)
+    return render_template("response.html", username=username, repos=repos,
+                           query=query_res)
 
 
 @app.route("/query")
